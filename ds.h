@@ -15,6 +15,7 @@ typedef struct listNode_{
 	void		*data;
     int         value;
     int         g_weight;   // graph weight for this edge
+    int         picked;
 }listNode;
 
 typedef struct listHead_ {
@@ -72,4 +73,5 @@ int heap_get_max(int *array, int size);
 void heap_increase_key(int *array, int size, int index, int new_key);
 void heap_insert_key(int *array, int* size, int key);
 
+/**/
 #endif

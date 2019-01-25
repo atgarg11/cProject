@@ -1,0 +1,209 @@
+BTNode	ds.h	/^}BinaryTreeNode, BTNode;$/
+CHAR_INDEX	graphs.h	/^#define CHAR_INDEX(c) ((c)-'a')$/
+INDEX_CHAR	graphs.h	/^#define INDEX_CHAR(i) ((i)+'a')$/
+MIN	tags	/^MIN	util.h	\/^\\\/\\\/#define MIN((a),(b)) ((a)>(b/
+Mtest	test.c	/^int main(int argc, char *argv[])$/
+add_cedge	graphs.c	/^void add_cedge(graph_t  *graph, char src, char des/
+add_edge	graphs.c	/^void add_edge(graph_t   *g, int src, int dest, int/
+allocBTNode	tree.c	/^BTNode*	allocBTNode(void) $/
+allocListNode	lists.c	/^listNode*   allocListNode(int data)$/
+alloc_bn_heap_node	binomial_heaps.c	/^bn_heap_node    *alloc_bn_heap_node()$/
+alloc_list_node	lists.c	/^listNode*   alloc_list_node(int data, int end)$/
+alloc_set	union_find.c	/^set*    alloc_set()$/
+alloc_trie_node	ds.c	/^tNode*  alloc_trie_node(unsigned int ip, unsigned /
+alloc_uf_tree_node	union_find.c	/^set_tree*   alloc_uf_tree_node(int value)$/
+alloc_union_find_member	union_find.c	/^union_find* alloc_union_find_member(int value)$/
+balance_bt	tree.c	/^BTNode  *balance_bt(BTNode   *root)$/
+binomial_heap	binomial_heaps.h	/^}binomial_heap;$/
+binomial_link	binomial_heaps.c	/^bn_heap_node*   binomial_link(bn_heap_node  *tree1/
+bn_heap_node	binomial_heaps.h	/^}bn_heap_node;$/
+bst	tree.c	/^int bst(BTNode *root, int *min, int *max, int *siz/
+bt_closet_value	tree.c	/^BTNode* bt_closet_value(BTNode    *root, int val, /
+bt_dll_insert	tree.c	/^BTNode*   bt_dll_insert(BTNode  **head, BTNode  *n/
+bt_extreme_level_nodes	tree.c	/^void bt_extreme_level_nodes(BTNode  *root)$/
+bt_leaves_to_dll	tree.c	/^BTNode  *bt_leaves_to_dll(BTNode *root, BTNode** h/
+bt_preorder	arrays.c	/^BTNode* bt_preorder(BTNode  *root, int* i, int k, /
+bt_print_list	tree.c	/^BTNode*   bt_print_list(BTNode *head)$/
+bt_top_view	tree.c	/^void bt_top_view(BTNode *root)$/
+bt_top_view_left	tree.c	/^void bt_top_view_left(BTNode *root)$/
+bt_top_view_right	tree.c	/^void bt_top_view_right(BTNode *root)$/
+bt_traverse_level	tree.c	/^void bt_traverse_level(BTNode   *root, int level, /
+check	lists.c	/^char* check(listNode* head) {$/
+closest	tree.c	/^BTNode*    closest(int val, BTNode *v1, BTNode *v2/
+compareInts	util.c	/^int compareInts(int a, int b)$/
+copy_list_with_random	lists.c	/^listNode    *copy_list_with_random(listNode *head)/
+count_bt_nodes	tree.c	/^int count_bt_nodes(BTNode *root)$/
+createList	lists.c	/^listNode* createList(listNode **head, int *data, i/
+create_binary_tree	tree.c	/^BTNode*	create_binary_tree(BTNode *root, int	*arra/
+create_graph	graphs.c	/^graph_t* create_graph(int nov) $/
+create_max_heap	heaps.c	/^int*    create_max_heap(int *array, int size)$/
+create_min_heap	heaps.c	/^int*    create_min_heap(int *array, int size)$/
+create_trie	ds.c	/^tNode   *create_trie(tNode  *root)$/
+delete_node	lists.c	/^listNode* delete_node(listNode  *node)$/
+dequeue	adt.c	/^int dequeue(queue_t *q) $/
+dfs	graphs.c	/^void dfs(graph_t* g, int vertex)$/
+dfs_node	graphs.c	/^void dfs_node(graph_t *g, int vertex)$/
+dfs_visit	graphs.c	/^void dfs_visit(graph_t  *graph, int s)$/
+dikjstra	graphs.c	/^queue_t*  dikjstra(graph_t   *graph, int source)$/
+display_lcs	dp.c	/^\/\/void display_lcs(int *a, int size_a)$/
+dll_insert	lists.c	/^listNode*   dll_insert(listNode   **head, int data/
+dll_insert2	lists.c	/^listNode*   dll_insert2(listNode  **head, listNode/
+endian	arrays.c	/^int endian()$/
+enqueue	adt.c	/^void enqueue(queue_t*   q, int data)$/
+even_odd	lists.c	/^listNode    *even_odd(listNode    *head)$/
+findIndex	tree.c	/^int findIndex(int *ar, int size, int elem)$/
+find_bt_node	tree.c	/^BTNode* find_bt_node(BTNode *root, int value)$/
+find_in_trie	ds.c	/^tNode*  find_in_trie(tNode    *root, unsigned int /
+find_num_list_elements	lists.c	/^int find_num_list_elements(listNode *head)$/
+find_set	union_find.c	/^set*    find_set(union_find *sm)$/
+func1	adt.c	/^int func1(void *key) $/
+getNode	lists.c	/^listNode*   getNode(listNode    *head, int index)$/
+get_bt_height	tree.c	/^int get_bt_height(BTNode    *root)$/
+get_bt_leaves	tree.c	/^BTNode* get_bt_leaves(BTNode   *root)$/
+get_inorder_succeessor	tree.c	/^BTNode* get_inorder_succeessor(BTNode   *root, BTN/
+get_largest_seq	tree.c	/^listNode* get_largest_seq(BTNode* root, listNode  /
+get_sum_path	tree.c	/^BTNode *get_sum_path(BTNode *root, int sum)$/
+graph_bfs	graphs.c	/^void graph_bfs(graph_t  *graph, int s)$/
+graph_dfs	graphs.c	/^void graph_dfs(graph_t   *graph)$/
+graph_relax_edge	graphs.c	/^void graph_relax_edge(graph_t* g, int src, int* di/
+graph_t	graphs.h	/^}graph_t;$/
+graph_top_sort	graphs.c	/^void graph_top_sort(graph_t    *graph)$/
+graph_transpose	graphs.c	/^graph_t*  graph_transpose(graph_t    *graph)$/
+hash_find	adt.c	/^listNode*   hash_find(hash_t  *hash, int data)$/
+hash_insert	adt.c	/^void hash_insert(hash_t *hash, int data, int value/
+hash_t	adt.h	/^}hash_t;$/
+heap_extract_max	heaps.c	/^int heap_extract_max(int *array, int *size)$/
+heap_extract_max_node	heaps.c	/^int heap_extract_max_node(heap_t    *hp)$/
+heap_extract_min	heaps.c	/^int heap_extract_min(int *array, int *size)$/
+heap_extract_min_node	heaps.c	/^int heap_extract_min_node(heap_t    *hp)$/
+heap_get_max	heaps.c	/^int heap_get_max(int *array, int size) $/
+heap_get_min	heaps.c	/^int heap_get_min(int *array, int size) $/
+heap_heapify_max	heaps.c	/^static void heap_heapify_max(heap_t *hp, int index/
+heap_heapify_min	heaps.c	/^static void heap_heapify_min(heap_t *hp, int index/
+heap_key	heaps.c	/^int heap_key(heap_t *hp, int index)$/
+heap_node_t	adt.h	/^}heap_node_t;$/
+heap_sort_array	heaps.c	/^int*    heap_sort_array(int ar[], int size)$/
+heap_swap_elements	heaps.c	/^void heap_swap_elements(heap_t  *hp, int index1, i/
+heap_t	adt.h	/^}heap_t;$/
+heapify_max	heaps.c	/^static void heapify_max(int *array, int size, int /
+heapify_max2	heaps.c	/^int*    heapify_max2(int *ar, int index, int size)/
+heapify_min	heaps.c	/^static void heapify_min(int *array, int size, int /
+heapleft	adt.h	/^#define heapleft(i)     ((2*i)+1)$/
+heapparent	adt.h	/^#define heapparent(i)   (((i)-1)\/2)$/
+heapright	adt.h	/^#define heapright(i)    ((2*i)+2)$/
+init_hash	adt.c	/^hash_t* init_hash(int size, hashf f)$/
+init_heap	heaps.c	/^heap_t* init_heap()$/
+init_queue	adt.c	/^queue_t* init_queue()$/
+insert_bt_node	tree.c	/^BTNode  * insert_bt_node(BTNode *root, int val)$/
+insert_sorted_list_2	lists.c	/^listNode    *insert_sorted_list_2(listNode* head, /
+insert_trie_node	ds.c	/^tNode*  insert_trie_node(tNode  *root, unsigned in/
+invert_bt	tree.c	/^BTNode *invert_bt(BTNode    *root)$/
+is_empty	adt.c	/^int is_empty(int first)$/
+is_leaf	tree.c	/^int is_leaf(BTNode    *root)$/
+is_left_heavy	tree.c	/^int is_left_heavy(BTNode    *root)$/
+lcs	dp.c	/^int lcs( const char *a, int size_a, const char* b,/
+lcs_dp	dp.c	/^int lcs_dp( const char *a, int size_a, const char*/
+left_leaf_sum	tree.c	/^int left_leaf_sum(BTNode    *root)$/
+listInsert	lists.c	/^listNode*   listInsert(listNode **head, int data)$/
+listInsertHead	lists.c	/^listNode*   listInsertHead(listNode **head, int da/
+listNode	ds.h	/^}listNode;$/
+list_head	ds.h	/^}list_head;$/
+list_insert	lists.c	/^listNode*   list_insert(listNode **head, listNode /
+list_insert_head	lists.c	/^listNode*   list_insert_head(listNode   **head, li/
+list_with_two_keys	arrays.c	/^list_with_two_keys()$/
+make_binomial_heap	binomial_heaps.c	/^binomial_heap*  make_binomial_heap()$/
+make_set	union_find.c	/^set*    make_set(int val)$/
+max	dp.c	/^int max(int a , int b)$/
+max_heap_increase_key	heaps.c	/^void max_heap_increase_key(int *array, int size, i/
+max_heap_increase_node_key	heaps.c	/^void max_heap_increase_node_key(heap_t  *hp, int i/
+max_heap_insert_key	heaps.c	/^void max_heap_insert_key(int *array, int* size, in/
+max_heap_insert_node	heaps.c	/^void max_heap_insert_node(heap_t    *hp, int key, /
+min	tree.c	/^BTNode  *min(BTNode *root)$/
+min_heap_decrease_key	heaps.c	/^void min_heap_decrease_key(int *array, int size, i/
+min_heap_decrease_node_key	heaps.c	/^void min_heap_decrease_node_key(heap_t  *hp, int i/
+min_heap_insert_key	heaps.c	/^void min_heap_insert_key(int *array, int* size, in/
+min_heap_insert_node	heaps.c	/^void min_heap_insert_node(heap_t    *hp, int key, /
+node_without_sibling	tree.c	/^void node_without_sibling(BTNode    *root)$/
+num_paths	graphs.c	/^int num_paths()$/
+obst	dp.c	/^BTNode  *obst(void)$/
+obst_node	dp.c	/^}obst_node;$/
+oddNumbers	lists.c	/^int* oddNumbers(int l, int r, int* result_size) {$/
+one	basicc.c	/^}one;$/
+pm	dp.c	/^int pm( const char *a, int size_a, const char* b, /
+pop	adt.c	/^int pop()$/
+pop2	adt.c	/^int pop2()$/
+popq2	adt.c	/^int popq2()$/
+populate_bt_hd	tree.c	/^void populate_bt_hd(BTNode  *root)$/
+practice_ads	union_find.c	/^void practice_ads(int tc, int argc, char *argv[])$/
+practise_arrays	arrays.c	/^void practise_arrays(int tc)$/
+practise_dps	dp.c	/^void practise_dps(int tc, int argc, char* argv[])$/
+practise_graphs	graphs.c	/^void practise_graphs(int tc, int argc, char * argv/
+practise_heaps	heaps.c	/^void practise_heaps(int argc)$/
+practise_list	lists.c	/^void practise_list(int tc)$/
+practise_trees	tree.c	/^void practise_trees(int tc)$/
+print_bt_inorder	tree.c	/^void print_bt_inorder(BTNode  *root) $/
+print_bt_level_order	tree.c	/^void print_bt_level_order(BTNode    *root, int lev/
+print_bt_preorder	tree.c	/^void print_bt_preorder(BTNode  *root) $/
+print_graph	graphs.c	/^void print_graph(graph_t  *g)$/
+print_graph_list	graphs.c	/^void print_graph_list(listNode *head)$/
+print_hash	adt.c	/^void print_hash(hash_t  *hash)$/
+print_list	lists.c	/^listNode*   print_list(listNode *head)$/
+print_list_2	lists.c	/^void print_list_2(listNode  *head)$/
+print_list_random	lists.c	/^void print_list_random(listNode *head)$/
+print_set	union_find.c	/^void print_set(set  *ts)$/
+print_stack	adt.c	/^void print_stack(stack_t    *stack)$/
+print_vertical_order	tree.c	/^void print_vertical_order(BTNode    *root, hash_t /
+push	adt.c	/^void push(int data)$/
+push2	adt.c	/^void push2(int data)$/
+pushq2	adt.c	/^void pushq2(int data)$/
+queue_t	adt.h	/^}queue_t;$/
+remove_bt_node	tree.c	/^BTNode  *remove_bt_node(BTNode  *root, int val)$/
+reverse_list	lists.c	/^listNode    *reverse_list(listNode  **head, int k)/
+rotate_right	tree.c	/^BTNode  *rotate_right(BTNode    *node)$/
+set	union_find.c	/^}set;$/
+set_tree	union_find.c	/^}set_tree;$/
+stack_size	adt.c	/^int stack_size()$/
+swap	heaps.c	/^void swap(int *a, int *b)$/
+swapChar	util.c	/^void swapChar(char  *str, int x, int y)$/
+swap_bt_children	tree.c	/^void swap_bt_children(BTNode *root)$/
+tNode	ds.h	/^}trieNode, tNode;$/
+test10_two_keys	lists.c	/^void test10_two_keys()$/
+test11_modulo	lists.c	/^void  test11_modulo() {$/
+test12_removal	tree.c	/^BTNode  *test12_removal(BTNode  *root, int val)$/
+test1_perfect	arrays.c	/^void  test1_perfect() {$/
+test1_test_stack	adt.c	/^void test1_test_stack()$/
+test21_dll_insert	lists.c	/^void test21_dll_insert()$/
+test2_missing_k	arrays.c	/^void test2_missing_k() $/
+test2_pm	dp.c	/^void test2_pm(int argc, char* argv[])$/
+test2_static	basicc.c	/^void test2_static()$/
+test2_test_reverse_group	lists.c	/^listNode*   test2_test_reverse_group(int k)$/
+test3_bst	tree.c	/^test3_bst(BTNode *root)$/
+test3_queue	adt.c	/^void test3_queue()$/
+test3_xor	arrays.c	/^int test3_xor() {$/
+test4_queue_using_stack	adt.c	/^void test4_queue_using_stack()$/
+test5_delete_node	lists.c	/^void   test5_delete_node()$/
+test6_cycle	lists.c	/^void test6_cycle()$/
+test6_inorder_succ	tree.c	/^void test6_inorder_succ(BTNode  *root, int value)$/
+test7_find_odd_numbers	lists.c	/^void test7_find_odd_numbers()$/
+test8_copy_list_with_random	lists.c	/^void test8_copy_list_with_random()$/
+test8_largest_seq	tree.c	/^void test8_largest_seq(BTNode   *root)$/
+test9_even_odd	lists.c	/^void test9_even_odd(listNode    *head)$/
+test9_top_view	tree.c	/^void test9_top_view(BTNode  *root)$/
+test_alien_dictionary	graphs.c	/^void test_alien_dictionary(int nov, char* argv[])$/
+test_bt_dll	tree.c	/^void test_bt_dll(BTNode *root)$/
+test_closest	tree.c	/^void test_closest(BTNode *root)$/
+test_hash	adt.c	/^void test_hash()$/
+test_left_leaf_sum	tree.c	/^void test_left_leaf_sum(BTNode  *root)$/
+test_top_sort	graphs.c	/^void test_top_sort(graph_t  *graph, int vertex)$/
+test_vertical	tree.c	/^void test_vertical(BTNode   *root)$/
+top_sort	graphs.c	/^void top_sort(graph_t* g, int vertex)$/
+top_sort_from_to	graphs.c	/^int top_sort_from_to(graph_t *g, int vertex, int d/
+top_sort_node	graphs.c	/^void top_sort_node(graph_t *g, int vertex)$/
+uf_set_update	union_find.c	/^set_tree*   uf_set_update(set_tree  *update_set, s/
+uf_tree_find_set	union_find.c	/^set_tree    *uf_tree_find_set(set_tree  *node)$/
+uf_tree_make_set	union_find.c	/^set_tree*   uf_tree_make_set(int value)$/
+uf_tree_union	union_find.c	/^set_tree    *uf_tree_union(set_tree*    set1, set_/
+uf_union	union_find.c	/^set*   uf_union(union_find *um1, union_find *um2)$/
+union_find	union_find.c	/^}union_find;$/
+update_set	union_find.c	/^set*    update_set(set* update_set, set* reps)$/
+void	adt.h	/^typedef int (*hashf)(void *);$/

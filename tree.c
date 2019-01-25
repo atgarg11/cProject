@@ -216,11 +216,11 @@ int get_bt_height(BTNode    *root)
    h = lh > rh ? lh : rh;
    return (h+1);
 }
-BTNode  *min(BTNode *root)
+BTNode  *bt_min(BTNode *root)
 {
     if (NULL == root) return root;
     if (NULL == root->left ) return root;
-    else return min (root->left);
+    else return bt_min (root->left);
 }
 BTNode* find_bt_node(BTNode *root, int value)
 {
@@ -241,7 +241,7 @@ BTNode* get_inorder_succeessor(BTNode   *root, BTNode   *node)
     
     if (is_leaf(root)) return NULL;
 
-    if (node->right) return min(node->right);
+    if (node->right) return bt_min(node->right);
 
     if (node->value < root->value ) {
         succ = root;   
@@ -276,7 +276,7 @@ void test6_inorder_succ(BTNode  *root, int value)
 {
     BTNode  *tmp = NULL, *tmp2 = NULL;
     if (NULL == root) { printf("NULL tree\n");}
-    tmp = min(root);
+    tmp = bt_min(root);
     while (tmp) {
         printf ("%d,", tmp->value);
         tmp = get_inorder_succeessor(root, tmp);
@@ -505,6 +505,8 @@ void practise_trees(int tc)
         case 21: 
            test_bt_dll(root);
            break;
+        case 22:
+           test_merge_bts();
         default :
             break;
     };
@@ -521,7 +523,7 @@ BTNode  *remove_bt_node(BTNode  *root, int val)
         node->left = remove_bt_node(node->left, val);
     } else if (val == node->value) {
         if (node->right && node->left) { 
-            tbr = min(node->right);
+            tbr = bt_min(node->right);
             tmp = tbr->value;
             node->right = remove_bt_node(node->right, tbr->value);
             node->value = tmp;
@@ -719,3 +721,44 @@ void bt_extreme_level_nodes(BTNode  *root)
     bt_traverse_level(root, ++level, hash);
     print_hash(hash);
 }
+void store_bt_inorder(BTNode    *tree, int* a, int *index)
+{
+    BTNode  *node = tree;
+    int i = 0;
+    if (node) {
+        if ( node->left) {
+            store_bt_inorder(node->left, a, index);
+        } 
+        a[*index] = node->value;
+        (*index)++;
+        if (node->right) {
+            store_bt_inorder(node->right, a, index);
+        }
+    }
+}
+BTNode* merge_bts(BTNode    *tree1, BTNode  *tree2, int n1, int n2)
+{
+    int *a = malloc((n1+n2)* sizeof(int));
+    int *a1 = malloc(n1* sizeof(int));
+    int *a2 = malloc(n2* sizeof(int));
+    int i = 0;
+    BTNode  *node = NULL;
+    store_bt_inorder(tree1, a1, &i);
+    i = 0;
+    store_bt_inorder(tree2, a2, &i);
+    merge_merge_sort(a1, a2, n1, n2, a);
+    printf("hi\n");
+}
+BTNode* test_merge_bts()
+{
+    BTNode  *n1 = NULL, *r; 
+    BTNode  *n2 = NULL;
+    int     a1[] = {1,2,3,4,5};
+    int     a2[] = {7,8,9,10};
+    n1 = create_binary_tree(n1, a1, sizeof(a1) / sizeof(int) );
+    n2 = create_binary_tree(n2, a2, sizeof(a2) / sizeof(int) );
+    r = merge_bts(n1, n2, sizeof(a1) / sizeof(int), 
+            sizeof(a2) / sizeof(int));
+    print_bt_inorder(r);
+}
+

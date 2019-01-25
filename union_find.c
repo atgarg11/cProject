@@ -8,7 +8,7 @@ typedef struct union_find_ {
     int                 value;    
 }union_find;
 
-/*  Structure to represent a set    
+/*  linked representation of a set    
     Tail points to the last element of the list */
 
 typedef struct set_ {

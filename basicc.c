@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "ds.h"
+#include "basicc.h"
 
 typedef struct one_ {
     char cb[0];
@@ -56,10 +57,18 @@ void test4()
     //gets(s); 
     printf("%s\n", s);
 }
+
+void test_null_ta()
+{
+    null_t  *nulta;
+    nulta = malloc(sizeof(null_t) + (5 * sizeof(int)));
+    printf("%s, data type:%d, data:%d\n", __FUNCTION__, 
+            sizeof(null_t), sizeof(nulta));
+}
 void practise_basic(int tc)
 {
     int inar[] = {7,6,5,4,3,2,1}; 
-
+    int one= -1, two = -1;
     
     switch (tc) {
         case 1: 
@@ -95,6 +104,15 @@ void practise_basic(int tc)
             break;
         case 12:
             test_hash();
+            break;
+        case 13:
+            one = system("echo hi");
+            printf("Before: %d,, %d\n", one, two);
+            two = system("python testloop.py");
+            printf("After: %d,, %d\n", one, two);
+            break;
+        case 14:
+            test_null_ta();
             break;
         default :
             break;

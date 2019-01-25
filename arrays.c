@@ -133,8 +133,24 @@ int endian()
 list_with_two_keys()
 {
 }
+void largest_sub_array_01(int *array, int count)
+{
+    int i = 0, tmp = 0;
+    for (i = 0 ; i < count; i++) {
+        switch(array[i]){
+            case 0: tmp++;
+                    break;
+            case 1:
+                    tmp--; break;
+            default:
+                    break;
+        }
+    }
+    printf("Size of the largets array:%d\n", (count -tmp));
+}
 void practise_arrays(int tc)
 {
+    int ar[] = {0, 0, 1, 1, 0, 0, 0};
     switch (tc) {
         case 1: 
             test1_perfect();
@@ -157,10 +173,11 @@ void practise_arrays(int tc)
         case 7:
             test7_find_odd_numbers();
             break;
-
         case 8:
             test8_copy_list_with_random();
             break;
+        case 9:
+            largest_sub_array_01(ar, sizeof(ar) / sizeof(int));
         default :
             break;
     };

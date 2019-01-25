@@ -4,6 +4,8 @@
 #include "ds.h"
 #include "util.h"
 #include "basicc.h"
+#include "strings.h"
+#include "test.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,7 +19,7 @@ int main(int argc, char *argv[])
     char    str[] = {'a','b','c', 'd','e'};
     char    str1[] = {'1','2','3', '4','5'};
     char    s[32];
-	printf("Alright another interview preparation\n");
+	//printf("Alright another interview preparation\n");
 
     /* 
        ******* Binary Tree *******
@@ -42,9 +44,13 @@ int main(int argc, char *argv[])
             } else if (!strcmp(argv[1], "arrays")) {
                 practise_arrays(atoi(argv[2]));
             } else if (!strcmp(argv[1], "dp")) {
-                practise_dps(atoi(argv[2]), argc, argv);
+                practise_dps(atoi(argv[2]), argc-3, argv+3);
             } else if (!strcmp(argv[1], "graphs")) {
-                practise_graphs(atoi(argv[2]), argc, argv);
+                practise_graphs(atoi(argv[2]), argc-3, argv+3);
+            } else if (!strcmp(argv[1], "strings")) {
+                practise_strings(atoi(argv[2]), argc-3, argv+3);
+            } else if (!strcmp(argv[1], "sort")) {
+                practise_sort(atoi(argv[2]), argc-3, argv+3);
             }
             break;
     };

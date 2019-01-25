@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ds.h" 
+#include "adt.h" 
 
 #define SSIZE 32
 
@@ -524,6 +525,9 @@ void practise_list(int tc)
             break;
         case 21:
             test21_dll_insert();
+            break;
+        case 22:
+            test_deque();
             break;
         default :
             break;

@@ -58,16 +58,20 @@ int stack_size()
 
 queue_t* init_queue()
 {
-    queue_t *que = (queue_t*)malloc(sizeof(queue_t));
+    queue_t *que = (queue_t*)calloc(1, sizeof(queue_t));
     que->head = que->tail = -1;
+    que->size = QSIZE;
+    return que;
 }
 void enqueue(queue_t*   q, int data)
 {
-    if ((q->head>q->tail) && ((q->head-q->tail) < QSIZE-1)) {
+    if ((q->head>=q->tail) && ((q->head-q->tail) < QSIZE-1)) {
         if ((q->head+1) < QSIZE-1)  {
             q->head++;
-        } else { q->head = 0; }
-            q->array[q->head] = data; 
+        } else { 
+            q->head = 0; 
+        }
+        q->array[q->head] = data; 
     } else  {
         printf("queue is full\n");
     } 
@@ -100,7 +104,65 @@ void test3_queue()
         printf("%d,", el);
     }while (-1 != el);
 }
+/*  double ended queue */
+void enqueue_head(queue_t   *q, int data) 
+{
+    if (q->tail >= q->size-1 || 
+            (q->tail + q->head >= q->size-1) ||
+            q->head >= q->size-1 ) {
+        return;
+    } else { 
+        q->head++;
+        q->array[q->head] = data;
+    }
+}
 
+void enqueue_tail(queue_t   *q, int data) 
+{
+    if (q->tail >= q->size-1 || 
+            (q->tail + q->head >= q->size-1) ||
+            q->head >= q->size-1 ) {
+        return;
+    } else { 
+        q->tail++;
+        q->array[q->size-1-q->tail] = data;
+    }
+}
+int dequeue_head(queue_t    *q)
+{
+    if (-1 == q->head) {
+        return MINUS_INFINITY;
+    } else { //if ((q->head < q->size-1) && (q->tail + q->head)< q->size-1){
+        return q->array[q->head--];
+    }
+}
+
+int dequeue_tail(queue_t    *q)
+{
+    if (-1 == q->tail) {
+        return MINUS_INFINITY;
+    } else { 
+        return q->array[q->size-1-q->tail--];
+    }
+}
+
+void test_deque()
+{
+   queue_t  *q = init_queue(); 
+   enqueue_head(q, 2);
+   enqueue_head(q, 3);
+   enqueue_tail(q, 22);
+   printf("Tail:%d, head:%d\n", dequeue_tail(q), dequeue_head(q));
+}
+
+void print_stack(stack_t    *stack)
+{
+    int i = 0; 
+    stack = NULL;   // to avoid warnings
+    for ( i = stack_size(); i > 0; i--) { 
+        printf("%d, " , pop());
+    }
+}
 void test1_test_stack()
 {
     int i = 0, size = 0;
@@ -214,4 +276,3 @@ void test_hash()
     hash_insert(hash, 13, 13);
     print_hash(hash);
 }
-

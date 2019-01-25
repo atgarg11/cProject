@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "adt.h"
-
-void swap(int *a, int *b)
-{
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
+#include "util.h"
 
 heap_t* init_heap()
 {

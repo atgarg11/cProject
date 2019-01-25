@@ -12,7 +12,9 @@ OBJ = ds.o \
       dp.o\
       arrays.o\
       graphs.o\
-      union_find.o
+      union_find.o\
+      strings.o\
+      sort.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
