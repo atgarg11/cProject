@@ -7,8 +7,8 @@
   True means b2 will come after b1 and vice versa
 
 bool pcomp(vector<int>& b1, vector<int>&b2) {
-               if ( b2[0] > b1[0]) {
-                   return true; // if b2[0] is bigger, it will come after b1
+  if ( b2[0] > b1[0]) {
+    return true; // if b2[0] is bigger, it will come after b1
                } else if ( b2[0] == b1[0]) {
                    // if same starting point, smaller bldg will come later
                    if (b2[1] < b1[1]) {
@@ -42,6 +42,7 @@ struct pqcomp {
 // if buildings are being removed, tallest building should come last. default sorting will take care of that
 
 // If a building is being removed at some x, there might be another building with same height
+
 class Solution {
     public:    
         vector<vector<int>> getSkyline(vector<vector<int>>& bs) {
