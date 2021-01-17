@@ -9,7 +9,7 @@ typedef struct listNode_{
 	struct listNode_	*next;
 	struct listNode_	*prev;
 	struct listNode_	*random;
-	int			int_data;       // integer key
+	int			int_data;       // integer key, vertex in case of graph
     char        c_data;
 	int			end;
 	void		*data;

@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "ds.h"
 #include "basicc.h"
+#include "adt.h"
 
 typedef struct one_ {
     char cb[0];
@@ -61,11 +62,11 @@ void test4()
 void test_null_ta()
 {
     null_t  *nulta;
-    nulta = malloc(sizeof(null_t) + (5 * sizeof(int)));
+    nulta = (null_t*)malloc(sizeof(null_t) + (5 * sizeof(int)));
     printf("%s, data type:%d, data:%d\n", __FUNCTION__, 
             sizeof(null_t), sizeof(nulta));
 }
-void practise_basic(int tc)
+void practise_basic(int tc, int argc, char* argv[])
 {
     int inar[] = {7,6,5,4,3,2,1}; 
     int one= -1, two = -1;
@@ -114,9 +115,32 @@ void practise_basic(int tc)
         case 14:
             test_null_ta();
             break;
+        case 15:
+            if (argc >=3)
+            test_number_of_occurences
+                (atoi(argv[0]), atoi(argv[1]), atoi(argv[2]));
         default :
             break;
     };
     printf("\n");
 }
-
+int basic_occurence(int num_to_check, int num)
+{
+    int count = 0;
+    while (num) {
+        if ((num % 10) == num_to_check){
+            count++;
+        }
+        num = num/10;
+    }
+    return count;
+}
+void test_number_of_occurences(int num, int low, int high)
+{
+    int count = 0;
+    int i = 0;
+    for ( i = low ; i < high ; i++) {
+        count += basic_occurence(num, i);        
+    }
+    printf("Number of occurrences:%d \n", count);
+}

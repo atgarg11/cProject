@@ -4,7 +4,7 @@
 /*  Structure to represent a mamber of a set    */
 typedef struct union_find_ {
     struct union_find_  *next;
-    void                *rep;
+    struct set_         *rep;
     int                 value;    
 }union_find;
 
@@ -156,7 +156,7 @@ void print_set(set  *ts)
     if (NULL == ts) return;
     union_find   *tmp = ts->head; 
     for ( count = 0 ; count < ts->size; count++, tmp=tmp->next) {
-        printf (" %d, set:0x%x ", tmp->value, tmp->rep);
+        printf (" %d, set:0x%x ", tmp->value, (unsigned*)(tmp->rep));
     }
     printf ("\n");
 }

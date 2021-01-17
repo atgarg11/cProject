@@ -3,7 +3,10 @@
 #include "ds.h" 
 #include "adt.h" 
 #include "tree.h" 
-
+#include "sort.h" 
+#include <iostream>
+#include <queue>
+using namespace std;
 /*
     BInary Tree Functions 
 */
@@ -76,9 +79,9 @@ void print_bt_inorder(BTNode  *root)
     if (NULL == root) { 
         return;
     }
-    print_bt_inorder(root->left);
+    if(root->left) print_bt_inorder(root->left);
     printf("%d,",root->value);
-    print_bt_inorder(root->right);
+    if(root->right) print_bt_inorder(root->right);
 }
 
 void print_bt_preorder(BTNode  *root) 
@@ -167,7 +170,7 @@ int bst(BTNode *root, int *min, int *max, int *size)
     return false;
 }
 
-test3_bst(BTNode *root)
+void test3_bst(BTNode *root)
 {
     int min, max ;
     int size = 0;
@@ -435,12 +438,13 @@ int count_bt_nodes(BTNode *root)
     return count;
 }
 /********************************/
-void practise_trees(int tc)
+void practise_trees(int tc, int argc, char* argv[])
 {
     BTNode  *root = NULL;
-	int ar[] = {1,2,3, 4, 5, 6, 7};
+    int ar[] = {1,2,3, 4, 5, 6, 7};
     root = create_binary_tree(NULL, ar, sizeof(ar)/sizeof(int));
     int c  = 0;
+    vector<int> path;
 
     switch (tc) {
         case 1:     // Tree traversals
@@ -457,7 +461,7 @@ void practise_trees(int tc)
         case 3:     
             /* finding the larges BST in a binary 
                tree refer tushar roy  video
-               */
+             */
             test3_bst(root);
             break;
         case 4: /*  Get the leaves of a binary tree */
@@ -482,31 +486,58 @@ void practise_trees(int tc)
             test_closest(root);
             break;
         case 11: 
-           c = count_bt_nodes(root);
-           printf("%d\n",c);
+            c = count_bt_nodes(root);
+            printf("%d\n",c);
         case 12: 
-           root = test12_removal(root, 5);
-           root = test12_removal(root, 6);
-           break;
+            root = test12_removal(root, 5);
+            root = test12_removal(root, 6);
+            break;
         case 13: 
-           test_vertical(root);
-           break;
+            test_vertical(root);
+            break;
         case 14: 
-           test_left_leaf_sum(root);
-           break;
+            test_left_leaf_sum(root);
+            break;
         case 15: 
-           insert_bt_node(root, 8);
-           insert_bt_node(root, 9);
-           node_without_sibling(root);
-           break;
+            insert_bt_node(root, 8);
+            insert_bt_node(root, 9);
+            node_without_sibling(root);
+            break;
         case 16: 
-           bt_extreme_level_nodes(root);
-           break;
+            bt_extreme_level_nodes(root);
+            break;
         case 21: 
-           test_bt_dll(root);
-           break;
+            test_bt_dll(root);
+            break;
         case 22:
-           test_merge_bts();
+            test_merge_bts();
+            break;
+        case 23:
+            test_normal_to_balance_tree();
+            break;
+        case 24:
+            test_level_sum();
+            break;
+        case 25:
+            test_tree_from_preorder(); 
+        case 26:
+            root = create_bt();
+            print_bt_inorder(root);
+            print_path_given_sum(root, atoi(argv[0]));  
+            break;
+        case 27:
+            root = create_bt();
+            print_all_paths(root, path); 
+            break;
+        case 28:
+            root = bt_create_bt(argc, argv);
+            print_all_paths(root, path); 
+            break;
+        case 29:
+            cout << (same_tree(argc, argv) ? 
+                    "Identical Trees" : " Non identical");
+            break;
+
         default :
             break;
     };
@@ -738,9 +769,9 @@ void store_bt_inorder(BTNode    *tree, int* a, int *index)
 }
 BTNode* merge_bts(BTNode    *tree1, BTNode  *tree2, int n1, int n2)
 {
-    int *a = malloc((n1+n2)* sizeof(int));
-    int *a1 = malloc(n1* sizeof(int));
-    int *a2 = malloc(n2* sizeof(int));
+    int *a = (int*)malloc((n1+n2)* sizeof(int));
+    int *a1 = (int*)malloc(n1* sizeof(int));
+    int *a2 = (int*)malloc(n2* sizeof(int));
     int i = 0;
     BTNode  *node = NULL;
     store_bt_inorder(tree1, a1, &i);
@@ -761,4 +792,432 @@ BTNode* test_merge_bts()
             sizeof(a2) / sizeof(int));
     print_bt_inorder(r);
 }
+/*      Feb 2019    */
+int bt_height(BTNode    *root)
+{
+    int lh = 0, rh = 0;
+    if ( NULL == root) return 0;
+    if (is_leaf(root)) return 1;
+    if (root->left) {
+        lh = 1+ bt_height(root->left);
+    }
+    if (root->right) {
+        rh = 1 + bt_height(root->right);
+    }
+    return (lh > rh ? lh : rh);
+}
+/*  March 2019 */
+BTNode* bt_max(BTNode*  root)
+{
+    if ( NULL == root || is_leaf(root)) return root;
+    if (root->right) return bt_max(root->right);
+    return root;
+}
 
+/*  Feb 2019    */
+BTNode  *bt_rotate_right(BTNode *root)
+{
+    BTNode  *btn = NULL, *tmp = NULL;
+    if (root && root->left) {
+        btn = bt_max(root->left);
+        if (btn == root->left ) {
+            root->left = NULL;
+            btn->right = root;
+        } else {
+            tmp = btn->left;
+            btn->left = root->left;
+            btn->right = root;
+            root->left = tmp;
+        }
+    }
+    return btn;
+}
+
+BTNode* bt_rotate_left(BTNode   *root)
+{
+    BTNode *btn = NULL, *tmp = NULL;
+    if (root && root->right) {
+        btn = bt_min(root->right);
+        if ( btn == root->right) {
+            root->right = NULL;
+            btn->left = root;
+        } else {
+            tmp = btn->right;
+            btn->right = root->right;
+            btn->left = root;
+            root->right = tmp;
+        }
+    }
+    return btn;
+}
+/*      Feb 2019    */
+BTNode* bt_balance_tree(BTNode *root)
+{
+    int left = 0, right = 0;
+    int delta = 0;
+    if (NULL == root || is_leaf(root)) return root;
+    do {
+        left    = bt_height(root->left); 
+        right   = bt_height(root->right);
+        delta = left - right;
+        switch(delta) {
+            case 2:
+                return bt_rotate_right(root);
+                break;
+            case -2:
+                return bt_rotate_left(root);
+                break;
+            default:
+                // This will change the height of 
+                // left & right, reevaluate
+                if (root->left) {
+                    root->left = bt_balance_tree(root->left);
+                }
+                if (root->right) {
+                    root->right = bt_balance_tree(root->right);
+                }
+        }
+    }while(root);
+}
+/*  Feb 2019    */
+void test_normal_to_balance_tree()
+{
+    int ar[] = {7,8, 9};
+    int ar2[15] = { 0 };
+    int index = 0;
+    BTNode  *root2 = NULL;
+    BTNode  *root = 
+        create_binary_tree(NULL, ar, sizeof(ar)/sizeof(int));
+    printf("%s\n", __FUNCTION__);
+    insert_bt_node(root, 6);
+    insert_bt_node(root, 5);
+    insert_bt_node(root, 4);
+    insert_bt_node(root, 3);
+    insert_bt_node(root, 2);
+    insert_bt_node(root, 1);
+    insert_bt_node(root, 10);
+    insert_bt_node(root, 11);
+    insert_bt_node(root, 12);
+    insert_bt_node(root, 13);
+    insert_bt_node(root, 14);
+    insert_bt_node(root, 15);
+    print_bt_preorder(root);
+    store_bt_inorder(root, ar2, &index);
+    root2 = create_binary_tree(root2, ar2, index);
+    printf("\n");
+    print_bt_preorder(root2);
+    /*
+    root = bt_balance_tree(root);
+    print_bt_preorder(root);
+    */
+}
+/*  March 2019 */
+int bt_level_sum(BTNode *root)
+{
+    int esum = 0, osum = 0;
+    int level = 1, count = 0;
+    BTNode  *nn = NULL, *btn;
+    queue<BTNode*> btq;
+    if (NULL == root) return 0;
+
+    btq.push(root);
+    count++;
+    btq.push(nn);
+    while (count) {
+        btn = btq.front();
+        btq.pop();
+        if (NULL == btn) { 
+            level++;
+            btq.push(nn);
+        } 
+        else {
+            count--;
+            if (btn->left) {
+                btq.push(btn->left); 
+                count++;
+            }
+            if (btn->right) {
+                btq.push(btn->right); 
+                count++;
+            }
+            if (level%2) osum += btn->value;
+            else esum += btn->value;
+        }
+    }
+    return osum-esum;
+}
+/*  March 2019  */
+void bt_print_level(BTNode  *root)
+{
+    queue<BTNode*> btq;
+    BTNode  *btn = NULL;
+    if (NULL == root) return;
+    btq.push(root);
+    while(! btq.empty()) {
+        btn = btq.front();
+        btq.pop();
+        printf("%d, ", btn->value);
+        if (btn->left) {
+            btq.push(btn->left);
+        } 
+        if (btn->right) {
+            btq.push(btn->right);
+        }
+    }
+}
+
+void test_level_sum()
+{
+    //int ar[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+    int ar[] = {1,2,3, 4, 5,6,7};
+    BTNode  *root = create_binary_tree(NULL, ar, sizeof(ar) / sizeof(int));
+    bt_print_level(root);
+    printf("odd even difference:%d\n", bt_level_sum(root));
+}
+void test_tree_from_preorder()
+{
+    int ar[] = {4, 2, 1, 3, 6, 5, 7};
+    BTNode  *root = NULL;
+    root = bt_create_bt_from_preorder(ar, sizeof(ar)/sizeof(int));
+    print_bt_inorder(root);
+}
+BTNode* bt_create_bt_from_preorder(int* ar, int size)
+{
+    BTNode  *root = NULL;
+    int     i = 1;
+    int     lsize = 0, rsize = 0;
+    if (ar == NULL || 0 == size) return NULL;
+    root = allocBTNode();
+    root->value = ar[0];
+    while (i < size) {
+        if (ar[i] > ar[0]) {
+            break;
+        } 
+        i++;
+    }
+    root->left = bt_create_bt_from_preorder(ar+1,i-1 );
+    root->right = bt_create_bt_from_preorder(ar+i,size-i );
+    return root;
+}
+/*  Aug 2019    */
+BTNode  *create_node(BTNode *root, int value, int left)
+{
+    BTNode  *tmp = NULL;
+    tmp = allocBTNode();
+    tmp->value = value;
+
+    if (NULL == root) {
+        ;
+    } else if (left) {
+        root->left = tmp;
+    } else { 
+        root->right = tmp;
+    }
+    return tmp;
+}
+BTNode* bt_find_node(BTNode *root, int data)
+{
+    BTNode *node = NULL;
+    if (root == NULL) return root;
+    if (data == root->value) return root;
+    if ( is_leaf(root)) return NULL;
+
+    node = bt_find_node(root->left, data);
+    if (NULL == node) {
+        node = bt_find_node(root->right, data);
+    }
+    return node;
+}
+/*  Function to create any type of binary tree
+    input is an array of string of the following format 
+    3l11r6
+    3r6
+    3l11
+ */
+BTNode* bt_create_bt(int argc, char* argv[])
+{
+    char    *tree = argv[0];
+    char    *ltokens = "lL";
+    char    *rtokens = "Rr";
+    int     count = 0;
+    char    *p = NULL, *l = NULL;
+    BTNode  *node = NULL;
+    BTNode  *root = NULL;
+    int     val;
+    while (count < argc) {
+        tree = argv[count]; 
+        p = strtok(tree, ltokens);
+        if (p) {
+            // This should be the root
+            val = atoi(p);
+            node = bt_find_node(root, val); 
+            if (NULL == node) {
+                root = create_node(NULL, val, 0);
+                node = root;
+            }
+            p = strtok(NULL, rtokens);
+            if (p) {
+                create_node(node, atoi(p), 1);
+                p = strtok(NULL, rtokens);
+                if (p) create_node(node, atoi(p), 0);
+            } else { 
+                l = strrchr(tree, 'r');
+                if (l) create_node(node, atoi(l+1), 0);
+            }
+        } else {
+            p = strtok(tree, rtokens);
+            if (p) {
+                val = atoi(p);
+                node = bt_find_node(root, val); 
+                if (NULL == node) {
+                    root = create_node(NULL, val, 0);
+                    node = root;
+                }
+                p = strtok(NULL, rtokens);
+                create_node(node, atoi(p), 0);
+            } else {
+                node = NULL;
+                if (tree) node = bt_find_node(root, atoi(tree));
+                if (NULL == node) {
+                    root = create_node(root, atoi(tree), 0);    
+                    node = root;
+                }
+            }
+        }
+        count++;
+    }
+    return  root;
+}
+/*  Create any random buinary tree
+    Not necessaroly the binary search tree
+    3 L 11 L 2
+    3 L 11 R 7
+    3 R 6 L 8
+    3 R 6 R5 L 8 
+ */
+BTNode  *create_bt()
+{
+    BTNode  *root = NULL;
+    BTNode  *left = NULL, *right = NULL;
+    root = create_node(root, 3, 0);
+
+    left = create_node(root, 11, 1);
+    create_node(left, 2, 1);
+    left = create_node(left, 7, 0);
+
+    right = create_node(root, 6, 0);
+    create_node(right , 8, 1);
+    right = create_node(right, 5, 0);
+
+    left = create_node(right, 2, 1);
+    return root;
+}
+
+void bt_preorder(BTNode * root, vector<int> &v)
+{
+    if (NULL == root) return;
+    v.push_back(root->value);
+    bt_preorder(root->left, v);
+    bt_preorder(root->right, v);
+}
+int same_tree(int argc, char* argv[])
+{
+    int count = atoi(argv[0]) , i;
+    //char*   br1[] = { "3l11r6", "11l2r7", "6l8r5","5l13"};
+    //char*   br2[] = { "3l11r6", "11l2r7", "6l8r5","5l12"};
+    BTNode  *t1 = NULL;
+    BTNode  *t2 = NULL;
+    vector<int> v1;
+    vector<int> v2;
+
+    if (argc == 0) return 0;
+    count = atoi(argv[0]);
+    argv++;
+
+    t1 = bt_create_bt(count, argv);
+    t2 = bt_create_bt(count, argv+count);
+
+    bt_preorder(t1, v1);
+    bt_preorder(t2, v2);
+
+    if (v1.size() == v2.size()) {
+        i = v1.size()-1;
+        for (; i >=0; i--) {
+            if (v1[i] != v2[i]) return 0;
+        }
+        return 1;
+    } else {
+        return 0;
+    }
+}
+int check_sum(vector<int> *path, int sum)
+{
+    int csum = 0;
+    vector<int>::reverse_iterator it;
+    it = path->rbegin();
+    for ( ; it != path->rend (); it++) {
+        csum += *it;
+        if (csum == sum) { 
+            cout << " found the sum\n";
+        }
+    }
+}
+int check_sum2(vector<int> &path, int sum)
+{
+    int csum = 0, j;
+    int i = path.size()-1; 
+
+    for ( ; i >= 0; i--) {
+        csum += path[i];
+        if (csum == sum) { 
+            cout << "found the sum\n";
+            for ( j = i; j < path.size(); j++) {
+                cout << path[j] << ","; 
+            }
+            cout << "\n";
+        }
+    }
+}
+
+void print_vector(vector<int>& path)
+{
+    vector<int>::iterator it = path.begin();
+    for (; it != path.end(); it++ ) {
+        cout << *it << "," ;
+    }
+    cout << "\n";
+}
+
+void recursive_print_path(BTNode   *root, int sum, vector<int> path)
+{
+    if (NULL == root) return;
+    path.push_back(root->value);
+
+    check_sum2(path, sum);
+    recursive_print_path(root->left, sum , path);
+    recursive_print_path(root->right, sum , path);
+}
+void print_path_given_sum(BTNode *root, int sum)
+{
+    vector<int> path;
+    if ( NULL == root) { 
+        return ;
+    }
+    path.push_back(root->value);
+    check_sum2(path, sum);
+    recursive_print_path(root->left, sum , path);
+    recursive_print_path(root->right, sum , path);
+}
+
+
+void print_all_paths(BTNode *root, vector<int> path)
+{
+    if (NULL == root) return;
+    path.push_back(root->value);
+
+    if (is_leaf(root)) {
+        print_vector(path);
+    }
+    if (root->left) print_all_paths(root->left, path); 
+    if (root->right ) print_all_paths(root->right, path); 
+}

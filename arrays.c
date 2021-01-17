@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "ds.h"
 #include "tree.h"
+#include "adt.h"
+#include "util.h"
 
 void  test1_perfect() {
     //code
@@ -130,9 +132,6 @@ int endian()
     return 0;
 }
 
-list_with_two_keys()
-{
-}
 void largest_sub_array_01(int *array, int count)
 {
     int i = 0, tmp = 0;
@@ -147,6 +146,41 @@ void largest_sub_array_01(int *array, int count)
         }
     }
     printf("Size of the largets array:%d\n", (count -tmp));
+}
+#define S 3
+#define S4  4
+void test_rotate_array()
+{
+    int ar[S][S] = {    {1,2,3},
+                        {4,5,6},
+                        {7,8,9}};
+
+    int ar2[S4][S4] = {    {1,2,3, 4},
+                        {5,6, 7, 8},
+                        {9, 10, 11, 12}, 
+                        {13, 14, 15, 16}};
+    int out[S4][S4] = {0};
+    int i = 0, j = 0;
+    int count = S4;
+
+    /*  Transpose of a matrix   */
+    for ( i = 0 ; i < S4; i++) {
+        for ( j = i; j < S4; j++) { 
+            swap(&ar2[i][j], &ar2[j][i]);
+        }
+    }
+    for ( j = 0 ; j < S4/2; j++) {
+        for ( i = 0 ; i < S4; i++) {
+            swap(&ar2[i][j], &ar2[i][S4-1-j]);
+        }
+    }
+    /*
+    for ( i = 0; i < S4; i++) { 
+        for ( j=0; j < S4; j++) {
+            out[j][S4-i-1] = ar2[i][j];
+        }
+    }
+    */
 }
 void practise_arrays(int tc)
 {
@@ -178,6 +212,10 @@ void practise_arrays(int tc)
             break;
         case 9:
             largest_sub_array_01(ar, sizeof(ar) / sizeof(int));
+            break;
+        case 10:
+            test_rotate_array();
+            break;
         default :
             break;
     };

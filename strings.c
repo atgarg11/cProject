@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "strings.h"
 #define no_of_chars 256
 #define false (0)

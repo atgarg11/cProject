@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "adt.h"
+
+int MINUS_INFINITY =  0xFFFFFFF;
+int LINFINITY = 0x7FFFFFF;
 /**
   * this file represents the abstract data type like stacks, queues, 
   * hash tables, disjoint sets and like

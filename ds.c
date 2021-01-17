@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "ds.h"
+#include "util.h"
 
 #define MAX_IP_BITS 32
 

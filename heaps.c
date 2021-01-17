@@ -131,7 +131,7 @@ int heap_extract_min(int *array, int *size)
         return res;
     
     res = array[0]; array[0] = array[*size-1] ;
-    array[*size-1 ] = INFINITY;
+    array[*size-1 ] = LINFINITY;
     (*size)--;
     heapify_min(array, *size, 0 );
     return res;
@@ -328,7 +328,7 @@ int heap_extract_min_node(heap_t    *hp)
         return res;
     
     hn = hp->array[0]; hp->array[0] = hp->array[hp->heap_size-1] ;
-    hp->array[hp->heap_size-1]->key = INFINITY;
+    hp->array[hp->heap_size-1]->key = LINFINITY;
     hp->heap_size--;
     heap_heapify_min(hp, 0);
     return res;

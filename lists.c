@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "ds.h" 
 #include "adt.h" 
+#include "basicc.h" 
 
 #define SSIZE 32
 

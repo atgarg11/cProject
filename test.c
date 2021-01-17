@@ -1,11 +1,22 @@
 #include <stdio.h> 
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include "ds.h"
 #include "util.h"
 #include "basicc.h"
 #include "strings.h"
 #include "test.h"
+#include "adt.h"
+#include "tree.h"
+#include "dp.h"
+#include "graphs.h"
+#include "backtracking.h"
+#include "stl.h"
+
+void practise_heaps(int argc);
+void practise_arrays(int tc);
+void practise_cprac(int tc, int argc, char * argv[]);
 
 int main(int argc, char *argv[])
 {
@@ -34,11 +45,11 @@ int main(int argc, char *argv[])
         default: 
 
             if (!strcmp(argv[1], "misc")) {
-                practise_basic(atoi(argv[2]));
+                practise_basic(atoi(argv[2]), argc-3, argv+3);
             } else if (!strcmp(argv[1], "list")) {
                 practise_list(atoi(argv[2]));
             } else if (!strcmp(argv[1], "trees")) {
-                practise_trees(atoi(argv[2]));
+                practise_trees(atoi(argv[2]), argc-3, argv+3);
             } else if (!strcmp(argv[1], "heaps")) {
                 practise_heaps(atoi(argv[2]));
             } else if (!strcmp(argv[1], "arrays")) {
@@ -51,7 +62,18 @@ int main(int argc, char *argv[])
                 practise_strings(atoi(argv[2]), argc-3, argv+3);
             } else if (!strcmp(argv[1], "sort")) {
                 practise_sort(atoi(argv[2]), argc-3, argv+3);
+            } else if (!strcmp(argv[1], "backt")) {
+                practise_sort(atoi(argv[2]), argc-3, argv+3);
+            }   else if (!strcmp(argv[1], "back")) {
+                practise_backtracking(atoi(argv[2]), argc-3, argv+3);
+            }   else if (!strcmp(argv[1], "stl")) {
+                practise_stl(atoi(argv[2]), argc-3, argv+3);
+            } else if (!strcmp(argv[1], "cpp")) {
+                practise_cprac(atoi(argv[2]), argc-3, argv+3);
             }
+
+
+
             break;
     };
 
