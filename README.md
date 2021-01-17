@@ -3,10 +3,9 @@
 # SkyLine : lC 218: Sorting / Multisets / PQs
 
 # Comparator Operator
-// Boolean response is in response to b2 being compared to b1
-// True means b2 will come after b1 and vice versa
+  Boolean response is in response to b2 being compared to b1
+  True means b2 will come after b1 and vice versa
 
-## This is the default behavior of internal sort opeation
 bool pcomp(vector<int>& b1, vector<int>&b2) {
                if ( b2[0] > b1[0]) {
                    return true; // if b2[0] is bigger, it will come after b1
@@ -18,6 +17,8 @@ bool pcomp(vector<int>& b1, vector<int>&b2) {
                }
                return false;
            }
+                                     
+ This is the default behavior of internal sort opeation
            
  struct node {
    int x;
@@ -33,6 +34,7 @@ struct pqcomp {
                 return n2.y > n1.y;
             }
         };
+        
 
 // Idea is to arrange the buildings in asending order.
 // At same position, if there are multiple bulding, following holds true
