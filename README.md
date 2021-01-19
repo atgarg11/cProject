@@ -16,7 +16,6 @@ bool pcomp(vector<int>& b1, vector<int>&b2) {
                return false;
            }
   ```                                   
- This is the default behavior of internal sort opeation
  ```          
  struct node {
    int x;
@@ -34,12 +33,11 @@ struct pqcomp {
         };
  ```    
 # SkyLine : lC 218: Sorting / Multisets / PQs
-// Idea is to arrange the buildings in asending order.
-// At same position, if there are multiple bulding, following holds true
-// if buildings are being added, tallesy building should come first. This has been trickly achieved by negating that value.
-// if buildings are being removed, tallest building should come last. default sorting will take care of that
-
-// If a building is being removed at some x, there might be another building with same height
+* Idea is to arrange the buildings in asending order.
+* At same position, if there are multiple bulding, following holds true
+* if buildings are being added, tallesy building should come first. This has been trickly achieved by negating that value.
+* if buildings are being removed, tallest building should come last. default sorting will take care of that
+* If a building is being removed at some x, there might be another building with same height
 ```
 class Solution {
     public:    
@@ -86,4 +84,3 @@ class Solution {
         }
 };
 ```
-
