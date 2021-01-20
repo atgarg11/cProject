@@ -2,10 +2,10 @@
 * Update / Creat order is O(n)
 * Query Order is O(n)
 
-| HI           | References                                    |   |
-|--------------|-----------------------------------------------|---|
-| [Tushar Roy] | (https://www.youtube.com/watch?v=ZBHKZF5w4YU) |   |
-|              |                                               |   |
+| HI           | References                                                                                                |   |
+|--------------|-----------------------------------------------------------------------------------------------------------|---|
+| [Tushar Roy] | (https://www.youtube.com/watch?v=ZBHKZF5w4YU)                                                             |   |
+| [Leet Code]  | (https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/) |   |
 
 ```
 void buildSegTree(vector<int>& arr, int treeIndex, int lo, int hi)
