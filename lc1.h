@@ -1086,7 +1086,39 @@ public:
 };
 class Solution5 {
 public:
+int len; 
+string res;
+int expand(string s, int l, int r) {
+        if ( l < 0  || r >= len) {
+            return r-l-1;
+        }
+        if ( s[l]!= s[r]) {
+            return r-l-1;
+        }
+        return expand (s, l-1, r+1);
+    }
     string longestPalindrome(string s) {
+        int i, j;
+        len = s.length();
+        int len1, len2;
+        int tmp = 0, start = 0;
+        for ( i = 0; i < len; i++) {
+            len1 = expand(s, i, i);
+            len2 = expand(s, i, i+1);     
+            if ( len1 > len2 && len1 > tmp) {
+                tmp = len1;            
+                res = s.substr(i, tmp);
+                start = i-(tmp-1)/2;
+            } else if ( len2 > len1 && len2 > tmp) {
+                tmp = len2;
+                res = s.substr(i, tmp);
+                start = i-(tmp-1)/2;
+            }
+            res = s.substr(start, tmp);
+        }
+        return res;
+    }
+    string longestPalindrome1(string s) {
         int length = s.length();
         int i, j, k, x,y, index = 0;
         int tmp = 0, mmax = 0;
