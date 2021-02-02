@@ -32,7 +32,7 @@ struct pqcomp {
             }
         };
  ```    
-# SkyLine : lC 218: Sorting / Multisets / PQs
+# SkyLine : LC 218: Sorting / Multisets / PQs
 * Idea is to arrange the buildings in asending order.
 * At same position, if there are multiple bulding, following holds true
 * if buildings are being added, tallesy building should come first. This has been trickly achieved by negating that value.
@@ -82,5 +82,49 @@ class Solution {
             }
             return res;
         }
+};
+```
+# Permutation Sequence
+```
+class Solution {
+public:
+    vector<int> perm;
+    string s;
+    
+    void init(int n) {
+        perm.push_back(1);
+        s = "123456789";
+                      
+        if ( n <= 1) {
+            perm.push_back(1);
+            return;
+        }
+        for ( int i = 1; i < n; i++) {
+            perm.push_back(perm[i-1]*i);
+        }
+    }
+    
+    string getPermutation(int n, int k) {
+        init(n);
+        int i=1, nm1 = n-1;
+        int len = 0; 
+        string res = "";
+        int index = 0;
+        vector<int> used(9, 0);
+        while ( len < n) {
+            index = 0;
+            while ( used[index]) index++;
+            while ( k > perm[nm1]) {
+                k -= perm[nm1];
+                index++;
+                while ( used[index]) index++;
+            }
+            res = res+s[index];
+            len++;
+            used[index] = 1;
+            nm1--;
+        }
+        return res;
+    }
 };
 ```

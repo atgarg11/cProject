@@ -1,5 +1,5 @@
 __Squares of Sorted Array__:
-* merge Sort. Two pointer. Check which one is bigger and pick from there.
+* Think of it as merge Sort of two sorted arrays. Pick the bigger element from each array.
 ```
 vector<int> sortedSquares(vector<int>& nums) {
         int i = 0, j = nums.size()-1;
