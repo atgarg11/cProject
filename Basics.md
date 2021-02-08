@@ -1,6 +1,6 @@
 # Binary Trees
 ## Level order Traversal
-### 1.
+### Mehotd - 1.
 * Maintain a que 
 * iterate on que till que is not empty
 * Maintain a count of nodes at a level and iterate for those nodes to complete the level within the out Loop.
@@ -22,3 +22,4 @@
             res.push_back(node->val);
         }
 ```
+[LC-199](https://leetcode.com/problems/binary-tree-right-side-view/)
