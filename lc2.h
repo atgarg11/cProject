@@ -2338,4 +2338,56 @@ public:
         
     }
 };
+
+class Solution99 {
+    // Test Cases: 
+    /*
+        [2,1,null,null,3,4]
+        [3,null,2,null,1]
+        [2,3,1]
+    */
+public:
+    TreeNode* t1;
+    TreeNode* t2;
+    bool first;
+
+    TreeNode* treeMin(TreeNode* root) {
+        while ( root && root->left) {
+            root = root->left;
+        }
+        return root;
+    }
+    
+    // level ofirstrder traversal with recursio
+    void recoverTree(TreeNode* root) {
+        helper(root, NULL, NULL);
+        int tmp = t1->val;
+        t1->val = t2->val;
+        t2->val = tmp;
+    }
+
+    void helper(TreeNode* root, TreeNode* tmin, TreeNode* tmax) {
+        int tmp;
+        TreeNode* succ = NULL;
+        if ( NULL == root) return;
+
+        helper(root->left, tmin, root);
+        
+        if ( root->right) {
+            succ = treeMin(root->right);
+        } else succ = tmax;
+
+        if (succ && succ->val < root->val) {
+                if (!first) {
+                    t1 = root;
+                    first = true;
+                } else {
+                    t2 = succ;
+                    return;
+                }
+                t2 = succ;
+            } 
+        helper(root->right, root, tmax);
+    }
+};
 #endif

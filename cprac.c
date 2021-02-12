@@ -2704,6 +2704,26 @@ void test31(int argc, char* argv[]) {
     sol.nextPermutation(A);
     printV(A);   
 }
+
+void test99(int argc, char* argv[]) {
+    Solution99 sol;
+    vector<int> nums;
+    vector<int> tree;
+    TreeNode*   root = NULL;
+    #define null INT_MIN
+    switch(atoi(argv[0])) {
+        case 1:
+            nums = {2,1,null,null,3,4}; break;
+        case 2:
+            nums = {3,null,2,null,1};break;
+        case 3:
+            nums =  {2,3,1}; break;
+        case 4:
+            nums = {1,3,null,null,2};break;
+    };
+    root = getTree(nums, 0);
+    sol.recoverTree(root);
+}
 void practise_cprac(int tc, int argc, char * argv[])
 {
     vector<int> nums;
@@ -2828,6 +2848,10 @@ void practise_cprac(int tc, int argc, char * argv[])
         case 80:
             test80(argc, argv);
             break;
+        case 99:
+            test99(argc, argv);
+            break;
+        
         case 100:
             test100(argc, argv);
             break;       
